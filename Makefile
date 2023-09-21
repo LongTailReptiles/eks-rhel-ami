@@ -1,4 +1,5 @@
 MAKEFILE_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+# Some changes
 
 PACKER_DEFAULT_VARIABLE_FILE ?= $(MAKEFILE_DIR)/eks-worker-rhel-variables.json
 PACKER_TEMPLATE_FILE ?= $(MAKEFILE_DIR)/eks-worker-rhel.json

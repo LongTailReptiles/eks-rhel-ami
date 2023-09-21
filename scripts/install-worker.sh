@@ -39,20 +39,14 @@ validate_env_set PAUSE_CONTAINER_VERSION
 validate_env_set CACHE_CONTAINER_IMAGES
 validate_env_set WORKING_DIR
 validate_env_set SSM_AGENT_VERSION
+validate_env_set SOME_NEW_FLAG
 
 ################################################################################
 ### Machine Architecture #######################################################
 ################################################################################
 
-MACHINE=$(uname -m)
-if [ "$MACHINE" == "x86_64" ]; then
-  ARCH="amd64"
-elif [ "$MACHINE" == "aarch64" ]; then
-  ARCH="arm64"
-else
-  echo "Unknown machine architecture '$MACHINE'" >&2
-  exit 1
-fi
+# No more arm64 support
+ARCH="amd64"
 
 ################################################################################
 ### Packages ###################################################################
@@ -241,6 +235,7 @@ sudo mkdir -p /etc/kubernetes/manifests
 sudo mkdir -p /var/lib/kubernetes
 sudo mkdir -p /var/lib/kubelet
 sudo mkdir -p /opt/cni/bin
+sudo mkdir -p /opt/cni/config
 
 echo "Downloading binaries from: s3://$BINARY_BUCKET_NAME"
 S3_DOMAIN="amazonaws.com"
